@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공학용 계산기</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 320px;
+            text-align: center;
+            box-sizing: border-box;
+            border: 2px solid #3498db;
+        }
+
+        .calculator input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 24px;
+            text-align: right;
+            box-sizing: border-box;
+            border: 2px solid #3498db;
+        }
+
+        .calculator input[type="button"] {
+            width: 25%;
+            padding: 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            background-color: #3498db;
+            color: #fff;
+            border: 2px solid #3498db;
+        }
+
+        .calculator input[type="button"]:hover {
+            background-color: #2980b9;
+        }
+
+        .calculator input[type="button"].equals {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+
+        .calculator input[type="button"].equals:hover {
+            background-color: #27ae60;
+        }
+
+        .calculator input[type="button"].function {
+            background-color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+
+        .calculator input[type="button"].function:hover {
+            background-color: #c0392b;
+        }
+
+        .calculator input[type="button"].operator {
+            background-color: #f39c12;
+            border: 2px solid #f39c12;
+        }
+
+        .calculator input[type="button"].operator:hover {
+            background-color: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <input type="button" value="C" class="function" onclick="clearDisplay()">
+        <input type="button" value="(" class="function" onclick="appendToDisplay('(')">
+        <input type="button" value=")" class="function" onclick="appendToDisplay(')')">
+        <input type="button" value="/" class="operator" onclick="appendToDisplay('/')">
+        <br>
+        <input type="button" value="7" onclick="appendToDisplay('7')">
+        <input type="button" value="8" onclick="appendToDisplay('8')">
+        <input type="button" value="9" onclick="appendToDisplay('9')">
+        <input type="button" value="*" class="operator" onclick="appendToDisplay('*')">
+        <br>
+        <input type="button" value="4" onclick="appendToDisplay('4')">
+        <input type="button" value="5" onclick="appendToDisplay('5')">
+        <input type="button" value="6" onclick="appendToDisplay('6')">
+        <input type="button" value="-" class="operator" onclick="appendToDisplay('-')">
+        <br>
+        <input type="button" value="1" onclick="appendToDisplay('1')">
+        <input type="button" value="2" onclick="appendToDisplay('2')">
+        <input type="button" value="3" onclick="appendToDisplay('3')">
+        <input type="button" value="+" class="operator" onclick="appendToDisplay('+')">
+        <br>
+        <input type="button" value="0" onclick="appendToDisplay('0')">
+        <input type="button" value="." onclick="appendToDisplay('.')">
+        <input type="button" value="=" class="equals" onclick="calculate()">
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
